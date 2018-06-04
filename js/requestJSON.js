@@ -1,7 +1,7 @@
 // input: path to a csv
 // ouput: csv converted to JSON
 function requestJSON(filePath) {
-    var fileInJSON;
+    var fileInJSON = [];
 
     //AJAX request csv that is server side
     var csvRequest = new Request(

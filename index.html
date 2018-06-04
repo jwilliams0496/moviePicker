@@ -1,7 +1,7 @@
 <html>
 <header>
 
-    <title>Accidents Happen</title>
+    <title>Find a Movie</title>
 
     <!-- Uses AJAX and mootools to send a GET request to server to access csv with data
         Code from: https://stackoverflow.com/questions/3567369/reading-server-side-file-with-javascript/3567423 -->
@@ -13,7 +13,6 @@
 
     <script src="js/papaparse.js" type="text/javascript"></script>
     <script src="js/parseData.js" type="text/javascript"></script>
-    <script src="incidentData.csv" type="text/csv" id="unparsedData"></script>
 
 </header>
 
@@ -32,14 +31,42 @@
 
     // When the DOM is fully loaded, mootools request all the CSV's and convert to JSON through Papa Parse
     window.addEvent("domready", function () {
+        var moviesReady = false;
+        var keywordsReady = false;
 
-        // send requests
-        var movies = requestJSON("data/movies_metadata.csv");
-        var keywords = requestJSON("data/keywords.csv");
+        //AJAX request csv that is server side
+        var moviesRequest = new Request(
+            {
+                url: "data/movies_metadata.csv",
+                // onSuccess is asyncronous, so schedule before using data!
+                onSuccess: function (response) {
 
-        // tell angularjs controller the data is ready
-        var scope = angular.element(document.getElementById('id4Angular')).scope();
-        scope.setData(movies, keywords);
+                    // send movie data to angularjs controller
+                    var scope = angular.element(document.getElementById('id4Angular')).scope();
+                    scope.setMovies(parseData(response));
+
+                    // let controller know data is ready, (movies unlocked)
+                    scope.moviesReady = true;
+
+                }
+            }).send();
+
+        //AJAX request csv that is server side
+        var keywordsRequest = new Request(
+            {
+                url: "data/keywords.csv",
+                // onSuccess is asyncronous, so schedule before using data!
+                onSuccess: function (response) {
+
+                    // send keyword data to angularjs controller
+                    var scope = angular.element(document.getElementById('id4Angular')).scope();
+                    scope.setKeywords(parseData(response));
+
+                    // let controller know data is ready, (keywords unlockeds)
+                    scope.keywordsReady = true;
+
+                }
+            }).send();
 
     });
 
@@ -51,7 +78,10 @@
         // all the data
         $scope.moviesJSON;
         $scope.keywordsJSON;
-        $scope.dataReady = false;
+
+        // locks for data (locked until data is available)
+        $scope.moviesReady = false;
+        $scope.keywordsReady = false;
 
         // String with Output
         $scope.resultList = "";
@@ -59,23 +89,25 @@
         $scope.userResults = [];
 
         // input: two JSON array lists
-        $scope.setData = function(movies, keywords) {
-            // set data in controller, and open "lock" on website
+        $scope.setMovies = function(movies) {
             $scope.moviesJSON = movies;
-            $scope.keywordsJSON = keywords;
-            $scope.dataReady = true;
 
             // console logs for debug
             console.log("Movies Recieved:");
             console.log($scope.moviesJSON);
+        }
+
+        $scope.setKeywords = function(keywords) {
+            $scope.keywordsJSON = keywords;
+
+            // console logs for debug
             console.log("Keywords Recieved:");
             console.log($scope.keywordsJSON);
-
         }
 
         $scope.execute = function () {
             // "lock" is closed, prevent interaction until data is ready
-            if (!$scope.dataReady) {
+            if (!$scope.moviesReady || !$scope.keywordsReady) {
                 alert("Hold on, the data isn't ready yet. Try again in a few seconds.")
                 return;
             }
