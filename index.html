@@ -21,7 +21,49 @@
     <div id="id4Angular" ng-app="mainApp" ng-controller="surveyController">
         <h2>Find a Movie to Watch</h2>
 
-        <!-- table will go here -->
+        <!-- input table -->
+        <table>
+            <tr>
+                <td>
+                    <form>
+                        <p>Non-Adult or Adult?</p>
+                        <input type="radio" ng-model="userAdult" name="adult" value=0> Non-Adult<br>
+                        <input type="radio" ng-model="userAdult" name="adult" value=1> Adult<br><br>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <from>
+                        <p>Select a Genre of movie you would like.</p>
+                        <select ng-model="userGenre">
+                            <option name="genre" value="Comedy">Comedy</option>
+                            <option name="genre" value="Drama">Drama</option>
+                            <option name="genre" value="Adventure">Adventure</option>
+                            <option name="genre" value="Action">Action</option>
+                            <option name="genre" value="Animation">Animation</option>
+                            <option name="genre" value="History">History</option>
+                            <option name="genre" value="Adventure">Adventure</option>
+                            <option name="genre" value="Science Fiction">Science Fiction</option>
+                            <option name="genre" value="Mystery">Mystery</option>
+                            <option name="genre" value="Romance">Romance</option>
+                            <option name="genre" value="War">War</option>
+                            <option name="genre" value="Music">Music</option>
+                            <option name="genre" value="Horror">Horror</option>
+                            <option name="genre" value="Drama">Drama</option>
+                            <option name="genre" value="Fantasy">Fantasy</option>
+                            <option name="genre" value="Crime">Crime</option>
+                            <option name="genre" value="Family">Family</option>
+                            <option name="genre" value="TV Movie">TV Movie</option>
+                            <option name="genre" value="Documentary">Documentary</option>
+                        </select>
+                    </from>
+                </td>
+            </tr>
+        </table>
+
+        Adult: {{userAdult}}<br>
+        UserGenre: {{userGenre}}<br>
 
     </div>
 </body>
@@ -85,8 +127,13 @@
 
         // String with Output
         $scope.resultList = "";
+
         // list of calculated results
         $scope.userResults = [];
+
+        // user input
+        $scope.userAdult = null;
+        $scope.userGenre = null;
 
         // input: two JSON array lists
         $scope.setMovies = function(movies) {
