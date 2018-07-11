@@ -22,8 +22,38 @@ mydata <- read.csv("http://stats.idre.ucla.edu/stat/data/binary.csv")
 head(mydata)
 summary(mydata)
 sapply(mydata, sd)
-movies = read.csv("movies_metadata.csv", headers = TRUE)
-movies = read.csv("movies_metadata.csv", header = TRUE)
 summary(movies)
-unique(movies$genres)
-subset(movies, !duplicated(genres))
+movies <- read.csv("movies_metadata.csv", header=TRUE)
+movies <- read.csv("movies_metadata.csv", header=TRUE)
+summary(movies)
+mean(movies$popularity)
+movies$popularity
+mean(movies$popularity)
+mean(movies[,"movies.popularity"])
+mean(movies[,"popularity"])
+summary(movies)
+dim(movies)
+movies[0, 1]
+movies[0, 2]
+movies[0, 3]
+movies[0, 4]
+movies[0, 0]
+movies[1, 0]
+movies[0, 8]
+colnames(movies)
+movies[,12]
+colnames(movies)
+movies[,11]
+min(movies[,11])
+mean(movies[,11])
+mat <- as.matrix(movies)
+mat[,11]
+mat[,11] <- sapply(mat[,11], as.numeric)
+as.numeric(mat[,11])
+min(as.numeric(mat[,11]))
+max(as.numeric(mat[,11]))
+mean(as.numeric(mat[,11]))
+summary(as.numeric(mat[,11]))
+max(as.numeric(mat[,11]), na.rm=TRUE)
+min(as.numeric(mat[,11]), na.rm=TRUE)
+median(as.numeric(mat[,11]), na.rm=TRUE)
