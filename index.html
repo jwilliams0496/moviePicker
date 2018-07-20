@@ -38,7 +38,8 @@ Author: James Williams-->
 
     <!-- Angularjs View -->
     <div id="id4Angular" ng-app="mainApp" ng-controller="surveyController">
-        <h2>Find a Movie to Watch</h2>
+        <br>
+        <h1>Find a Movie to Watch</h1>
 
         <!-- input table -->
         <table>
@@ -46,9 +47,11 @@ Author: James Williams-->
                 <td>
                     <form>
                         <p>Non-Adult or Adult?</p>
-                        <input type="radio" ng-model="userAdult" name="adult" value=0> Non-Adult
-                        <br>
-                        <input type="radio" ng-model="userAdult" name="adult" value=1> Adult
+                        <p2>
+                            <input type="radio" ng-model="userAdult" name="adult" value=0> Non-Adult
+                            <br>
+                            <input type="radio" ng-model="userAdult" name="adult" value=1> Adult
+                        </p2>
                         <br>
                         <br>
                     </form>
@@ -58,36 +61,42 @@ Author: James Williams-->
                 <td>
                     <from>
                         <p>Select a Genre of movie you would like.</p>
-                        <select ng-model="userGenre">
-                            <option name="genre" value="Comedy">Comedy</option>
-                            <option name="genre" value="Drama">Drama</option>
-                            <option name="genre" value="Adventure">Adventure</option>
-                            <option name="genre" value="Action">Action</option>
-                            <option name="genre" value="Animation">Animation</option>
-                            <option name="genre" value="History">History</option>
-                            <option name="genre" value="Adventure">Adventure</option>
-                            <option name="genre" value="Science Fiction">Science Fiction</option>
-                            <option name="genre" value="Mystery">Mystery</option>
-                            <option name="genre" value="Romance">Romance</option>
-                            <option name="genre" value="War">War</option>
-                            <option name="genre" value="Music">Music</option>
-                            <option name="genre" value="Horror">Horror</option>
-                            <option name="genre" value="Drama">Drama</option>
-                            <option name="genre" value="Fantasy">Fantasy</option>
-                            <option name="genre" value="Crime">Crime</option>
-                            <option name="genre" value="Family">Family</option>
-                            <option name="genre" value="TV Movie">TV Movie</option>
-                            <option name="genre" value="Documentary">Documentary</option>
-                        </select>
+                        <p2>
+                            <select ng-model="userGenre">
+                                <option name="genre" value="Comedy">Comedy</option>
+                                <option name="genre" value="Drama">Drama</option>
+                                <option name="genre" value="Adventure">Adventure</option>
+                                <option name="genre" value="Action">Action</option>
+                                <option name="genre" value="Animation">Animation</option>
+                                <option name="genre" value="History">History</option>
+                                <option name="genre" value="Adventure">Adventure</option>
+                                <option name="genre" value="Science Fiction">Science Fiction</option>
+                                <option name="genre" value="Mystery">Mystery</option>
+                                <option name="genre" value="Romance">Romance</option>
+                                <option name="genre" value="War">War</option>
+                                <option name="genre" value="Music">Music</option>
+                                <option name="genre" value="Horror">Horror</option>
+                                <option name="genre" value="Drama">Drama</option>
+                                <option name="genre" value="Fantasy">Fantasy</option>
+                                <option name="genre" value="Crime">Crime</option>
+                                <option name="genre" value="Family">Family</option>
+                                <option name="genre" value="TV Movie">TV Movie</option>
+                                <option name="genre" value="Documentary">Documentary</option>
+                            </select>
+                        </p2>
+                        <br>
+                        <br>
                     </from>
                 </td>
             </tr>
             <tr>
                 <td>
                     <p>Are you looking for something popular or unpopular?</p>
-                    <input type="radio" ng-model="userPop" name="popular" value=0> Unpopular
-                    <br>
-                    <input type="radio" ng-model="userPop" name="popular" value=1> Popular
+                    <p2>
+                        <input type="radio" ng-model="userPop" name="popular" value=0> Unpopular
+                        <br>
+                        <input type="radio" ng-model="userPop" name="popular" value=1> Popular
+                    </p2>
                     <br>
                     <br>
 
@@ -95,10 +104,11 @@ Author: James Williams-->
             </tr>
         </table>
 
-        Adult: {{userAdult}}
-        <br> UserGenre: {{userGenre}}
-        <br> Popular: {{userPop}}
-        <br>
+        <strong>
+            <br>Adult: {{userAdult}}
+            <br>UserGenre: {{userGenre}}
+            <br>Popular: {{userPop}}
+        </strong>
 
     </div>
 </body>
